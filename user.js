@@ -9,5 +9,7 @@ router
 .get('/', getAll)
 .get('/:id', getById) 
 .post('/', createUser) //create new resources 
+.put('/:id',  createUser)
+.delete('/:id',  createUser)
 
 module.exports = router
