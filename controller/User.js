@@ -29,7 +29,7 @@ const userController = {
             error['userType'] = "user type should be a string & not empty"
         }else{
             const checks = ['user', 'admin', 'support']
-            //check if its found in the array return true or false
+            //check if its found in the array return true else false
             const found = checks.some(check => check === userType)
             if (!found) {
                 isBodyValid = false
@@ -55,7 +55,16 @@ const userController = {
         
         return res
         .status(200).json({ success: true, message : 'created user done', data: userPayload})
-    }
+    },
+    updateUser: (req, res, next ) => {
+        const { id } = req.params
+        return res.status(200).json({ success: true, message : `user updated : ${id}`})
+    },
+    deleteUser: (req, res, next ) => {
+        const { id } = req.params
+        return res.status(200).json({ success: true, message : `deleted : ${id}`})
+    },
+
 
 }
 
