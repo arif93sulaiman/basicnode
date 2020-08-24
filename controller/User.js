@@ -1,6 +1,8 @@
 const userController = {
-    getAll: (req, res, next ) => {
-        return res.status(200).json({ success: true, message : 'job very well done'})
+    getAll: (req, res) => {
+        //decoded keys
+        console.log(req.information)
+        return res.status(200).json({ success: true, message : 'job very well done' })
     },
     getById: (req, res, next ) => {
         const { id } = req.params

@@ -9,7 +9,7 @@ const auth = {
         }
         //perform some db operation 
         //checking user
-        const token = jwt.sign(payload, SECRET_KEY, { expiresIn: 60 * 60 }) 
+        const token = jwt.sign(payload, SECRET_KEY) 
         req.token = token
         next()
     },
@@ -21,11 +21,11 @@ const auth = {
             })
         }
         //bearer auth.token
-        const token = req.headers.authorization.split(' ')
         try {
-            const decoded = jwt.decode(token)
+            const token = req.headers.authorization.split(' ')[1]//second part after bearer
+            const decoded = jwt.decode(token, SECRET_KEY)
             req.information = decoded
-            next()
+            return next()
         } catch (error) {
             return res.status(401).json({
                 success: false,
